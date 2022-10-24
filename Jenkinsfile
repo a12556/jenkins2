@@ -1,21 +1,29 @@
 pipeline {
-    agent { docker { image 'maven:3.8.4-openjdk-11-slim' } }
+    agent { docker { image 'node:latest' } }
     stages {
-        stage('build') {
+        stage('build Backend') {
             steps {
-                sh 'mvn --version'
-                sh 'ls -LR'
+				sh 'pwd'
+				sh 'echo "this is build backend"'
+				sh '''
+					cd backend
+					npm install
+					npm run build
+				'''	
+				sh 'echo "finish build backend"'
             }
         }
-        stage('Test') {
+        stage('build frontend') {
             steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-            }
+				sh 'echo "this is build frontend"'
+				sh '''
+					cd frontend
+					npm install
+					npm run test
+				'''	
+				sh 'echo "finish build frontend"'
+			}
+
         }
     }
 }
