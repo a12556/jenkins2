@@ -4,6 +4,6 @@ RUN yum install httpd httpd-tools -y
 WORKDIR /var/www/html
 ADD . /var/www/html
 EXPOSE 80
-ENTRYPOINT ["/usr/sbin/httpd"]
+#ENTRYPOINT ["/usr/sbin/httpd"]
 CMD ["-D", "FOREGROUND"]
 
