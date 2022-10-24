@@ -1,0 +1,10 @@
+.idea/
+target/
+*.iml
+*.sw*
+plugins.json.gzip
+.classpath
+.project
+.settings
+.envrc
+!target/*.war
