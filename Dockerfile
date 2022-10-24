@@ -1,10 +1,7 @@
 FROM centos:latest
 RUN yum update -y
-RUN yum install httpd httpd-tools -y
-RUN yum install epel-release -y \
-    && yum update -y \
-    && yum install htop -y \
-    && yum install vim -y
+RUN yum install httpd
+RUN yum systemctl start httpd
 WORKDIR /var/www/html
 ADD . /var/www/html
 EXPOSE 80
