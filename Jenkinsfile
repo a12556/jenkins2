@@ -1,5 +1,5 @@
 pipeline {
-    agent { docker { image 'node:16.13.1-alpine' } }
+    agent { docker { image 'node:latest' } }
     stages {
         stage('build Backend') {
             steps {
