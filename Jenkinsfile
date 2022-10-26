@@ -1,7 +1,9 @@
 pipeline {
-	agent { 
-		alwaysPull false
-		dockerfile true 
+	agent {	
+		dockerfile {
+            filename 'Dockerfile'
+            alwaysPull false
+        }
 	}
     stages {
         stage('Test') {
