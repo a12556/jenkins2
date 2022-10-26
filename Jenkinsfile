@@ -3,20 +3,15 @@ pipeline {
         dockerfile {
             filename 'Dockerfile'
             additionalBuildArgs "--build-arg UID=113"
+			alwaysPull true
         }
     }
-
-stages {
-    stage('Test') {
-          agent {
-              docker {
-                  image 'node:14-alpine'
-                  alwaysPull true
-              }
-          }
-          steps {
-              sh 'node --version'
-          }
-      }
-    }
+	stages {
+		stage('Test') {
+			steps {
+				sh 'echo "Hello World"'
+				sh 'ls -la'
+			  }
+		  }
+		}
 }
