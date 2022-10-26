@@ -9,7 +9,7 @@ pipeline {
 		stage('Test') {
 			steps {
 				echo "Hello World"
-				bat 'ls -la'
+				sh ('ls -la')
 			  }
 		  }
 		}
