@@ -8,7 +8,7 @@ pipeline {
 	stages {
 		stage('Test') {
 			steps {
-				sh 'echo "Hello World"'
+				echo "Hello World"
 				sh 'ls -la'
 			  }
 		  }
