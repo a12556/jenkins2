@@ -3,8 +3,9 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                sh 'ls'
-                sh 'pwd'
+                echo 'Hi'
+				sh 'ls'
+                sh 'curl localhost:80'
             }
         }
     }
