@@ -1,17 +1,22 @@
 pipeline {
-	agent {	
-		dockerfile {
+    agent {
+        dockerfile {
             filename 'Dockerfile'
-            alwaysPull false
-        }
-	}
-    stages {
-        stage('Test') {
-            steps {
-                echo 'Hi'
-				sh 'ls'
-                sh 'curl localhost:80'
-            }
+            additionalBuildArgs "--build-arg UID=113"
         }
     }
-	}
+
+stages {
+    stage('Test') {
+          agent {
+              docker {
+                  image 'node:14-alpine'
+                  alwaysPull true
+              }
+          }
+          steps {
+              sh 'node --version'
+          }
+      }
+    }
+}
