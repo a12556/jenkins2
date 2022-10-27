@@ -8,7 +8,7 @@ RUN yum install epel-release -y \
 	&& yum install curl -y
 WORKDIR /var/www/html
 ADD . /var/www/html
-EXPOSE 80
+EXPOSE 3000
 #ENTRYPOINT ["/usr/sbin/httpd"]
 CMD ["-D", "FOREGROUND"]
 
