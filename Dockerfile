@@ -5,7 +5,7 @@ RUN yum install epel-release -y \
     && yum update -y \
     && yum install htop -y \
     && yum install vim -y \
-	&& yum install curl
+	&& yum install curl -y
 WORKDIR /var/www/html
 ADD . /var/www/html
 EXPOSE 80
