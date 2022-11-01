@@ -29,21 +29,13 @@ pipeline {
 			}
 			}
         }
-		stage('deploy web to server') {
+        stage('deploy web to server') {
 			steps {         
 				script {
-                    sh "docker run -d --restart always --name httpd_web -p 3000:80 $registry:$BUILD_NUMBER"
+                    bat "docker run -d --restart always --name httpd_web -p 3000:80 $registry:$BUILD_NUMBER"
+                    bat "curl http://localhost:3000/"
                 }
 			}
-        }
-   
-        stage('Remove') {
-            steps {
-                script {
-                    sh "docker rmi $registry:$BUILD_NUMBER"
-                }
-                
-            }
         }
     }
 }

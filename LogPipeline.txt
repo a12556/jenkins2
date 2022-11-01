@@ -1,0 +1,195 @@
+Started by user thanh tran
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in C:\ProgramData\Jenkins\.jenkins\workspace\demo1
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Checkout)
+[Pipeline] git
+The recommended git tool is: NONE
+using credential GitHubThanh
+ > git.exe rev-parse --resolve-git-dir C:\ProgramData\Jenkins\.jenkins\workspace\demo1\.git # timeout=10
+Fetching changes from the remote Git repository
+ > git.exe config remote.origin.url https://github.com/a12556/jenkins2.git # timeout=10
+Fetching upstream changes from https://github.com/a12556/jenkins2.git
+ > git.exe --version # timeout=10
+ > git --version # 'git version 2.38.1.windows.1'
+using GIT_ASKPASS to set credentials 
+ > git.exe fetch --tags --force --progress -- https://github.com/a12556/jenkins2.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git.exe rev-parse "refs/remotes/origin/main^{commit}" # timeout=10
+Checking out Revision 9362d6d06c678146a5b6e6a26a71eceadd8137fe (refs/remotes/origin/main)
+ > git.exe config core.sparsecheckout # timeout=10
+ > git.exe checkout -f 9362d6d06c678146a5b6e6a26a71eceadd8137fe # timeout=10
+ > git.exe branch -a -v --no-abbrev # timeout=10
+ > git.exe branch -D main # timeout=10
+ > git.exe checkout -b main 9362d6d06c678146a5b6e6a26a71eceadd8137fe # timeout=10
+Commit message: "d"
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Building)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] isUnix
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] bat
+
+C:\ProgramData\Jenkins\.jenkins\workspace\demo1>docker build -t "thanh145/demo1dockerfile:13" . 
+#2 [internal] load .dockerignore
+#2 sha256:0957cffa742c4159b3d072ee8fa40b683b11c24b24473bdc33ca1ae3b37166e7
+#2 transferring context: 2B done
+#2 ...
+
+#1 [internal] load build definition from Dockerfile
+#1 sha256:f28e58cc14e4471ff635135dad50616ea270272458eabbe8c25191bb15d19813
+#1 transferring dockerfile: 32B 0.0s done
+#1 DONE 0.7s
+
+#2 [internal] load .dockerignore
+#2 sha256:0957cffa742c4159b3d072ee8fa40b683b11c24b24473bdc33ca1ae3b37166e7
+#2 DONE 0.9s
+
+#3 [internal] load metadata for docker.io/library/centos:centos7
+#3 sha256:7e9012c09bc0a0d745f9e9913928ad1959e164a304e5d8cd35a8d504810c8335
+#3 ...
+
+#4 [auth] library/centos:pull token for registry-1.docker.io
+#4 sha256:0d07a959184e7004e63539f60231ca09b3bd6d2712caa305b0df416d79d762f6
+#4 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/centos:centos7
+#3 sha256:7e9012c09bc0a0d745f9e9913928ad1959e164a304e5d8cd35a8d504810c8335
+#3 DONE 3.4s
+
+#5 [1/6] FROM docker.io/library/centos:centos7@sha256:c73f515d06b0fa07bb18d8202035e739a494ce760aa73129f60f4bf2bd22b407
+#5 sha256:37602938dec3c6c04e393cebbd9b10b1c8b28877f614373588001995b06d272d
+#5 DONE 0.0s
+
+#10 [internal] load build context
+#10 sha256:aaa12227e2697bbe00ee8f62df3bd06ba7fa84cb1a344c913fdb06a1569683dc
+#10 transferring context: 8.21kB 0.0s done
+#10 DONE 0.4s
+
+#8 [4/6] RUN yum install epel-release -y     && yum update -y     && yum install htop -y     && yum install vim -y 	&& yum install curl -y
+#8 sha256:e206f14cc179840807854b2b185fe5b26bbeecdfdcbfe90cb74f959cc54d9014
+#8 CACHED
+
+#6 [2/6] RUN yum update -y
+#6 sha256:03246854467161da3dff3a8d4d58233f9cee4884a94a982183b1bfe296526d47
+#6 CACHED
+
+#7 [3/6] RUN yum install httpd httpd-tools -y
+#7 sha256:fbe5fb4b15e2852d12ad0b78fcee1b45a00b75d4a18d5966e46a4d62cc0cd45b
+#7 CACHED
+
+#9 [5/6] WORKDIR /var/www/html
+#9 sha256:3a5c7be2cddea1ff13310f564dbcf108992c060ada1fb312fc0236e4d7c6cf70
+#9 CACHED
+
+#11 [6/6] ADD . /var/www/html
+#11 sha256:49fe474870da1eb6a5ae8faad23bf4b9c5c1a173680f763058204a5f1afe814e
+#11 DONE 1.0s
+
+#12 exporting to image
+#12 sha256:e8c613e07b0b7ff33893b694f7759a10d42e180f2b4dc349fb57dc6b71dcab00
+#12 exporting layers
+#12 exporting layers 0.6s done
+#12 writing image sha256:398b1465387f50e0a98e10501aac29465d9c8d0e99296bb683d302e02c35cd47 0.0s done
+#12 naming to docker.io/thanh145/demo1dockerfile:13 0.0s done
+#12 DONE 1.0s
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Publish)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withDockerRegistry
+$ docker login -u thanh145 -p ******** https://index.docker.io/v1/
+WARNING! Using --password via the CLI is insecure. Use --password-stdin.
+Login Succeeded
+
+Logging in with your password grants your terminal complete access to your account. 
+For better security, log in with a limited-privilege personal access token. Learn more at https://docs.docker.com/go/access-tokens/
+[Pipeline] {
+[Pipeline] isUnix
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] bat
+
+C:\ProgramData\Jenkins\.jenkins\workspace\demo1>docker tag "thanh145/demo1dockerfile:13" "thanh145/demo1dockerfile:13" 
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] isUnix
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] bat
+
+C:\ProgramData\Jenkins\.jenkins\workspace\demo1>docker push "thanh145/demo1dockerfile:13" 
+The push refers to repository [docker.io/thanh145/demo1dockerfile]
+e2b9f1ade04c: Preparing
+5f70bf18a086: Preparing
+5791ab5e33f5: Preparing
+ce7fcb23e2a8: Preparing
+f2131af44012: Preparing
+174f56854903: Preparing
+174f56854903: Waiting
+5791ab5e33f5: Layer already exists
+ce7fcb23e2a8: Layer already exists
+f2131af44012: Layer already exists
+5f70bf18a086: Layer already exists
+174f56854903: Layer already exists
+e2b9f1ade04c: Pushed
+13: digest: sha256:44498365749c3baf3f342aade7cd0dd74de62561b6f3b2134f101122c370479e size: 1583
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withDockerRegistry
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (deploy web to server)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] bat
+
+C:\ProgramData\Jenkins\.jenkins\workspace\demo1>docker run -d --restart always --name httpd_web -p 3000:80 thanh145/demo1dockerfile:13 
+3dcdcef1702f5bde8c825627352680d205df9af26d049a2470de753d2acbed3f
+[Pipeline] bat
+
+C:\ProgramData\Jenkins\.jenkins\workspace\demo1>curl http://localhost:3000/ 
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100    88  100    88    0     0  12069      0 --:--:-- --:--:-- --:--:-- 14666
+<!DOCTYPE html>
+<html>
+<body>
+    <h1>!HELLOh WORLDd!</h1>   
+</body>
+</html>    
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
